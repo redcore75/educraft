@@ -5,7 +5,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.*;
 
 public class UserFile {
-	private static Log log = LogFactory.getLog(UserFile.class);
+	private final Log log = LogFactory.getLog(this.getClass());
 
 	public boolean copyToFile(String src, String des) {
 		boolean retVal = true;

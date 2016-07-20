@@ -10,7 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import kr.co.educraft.util.string.*;
 
 public class ParamMap extends HashMap {
-	private static final Log log = LogFactory.getLog(ParamMap.class);
+	private final Log log = LogFactory.getLog(this.getClass());
 
 	public static final String CHARSET_DEFAULT = "UTF-8";
 	public static final String CONNECTSTRING_DEFAULT = "&";

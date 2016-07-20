@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberService extends PageObject {
-	private Log log = LogFactory.getLog(this.getClass());
+	private final Log log = LogFactory.getLog(this.getClass());
 	
 	@Autowired
 	@Qualifier("tbl_memberMapper")

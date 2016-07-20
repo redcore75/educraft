@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views/decorators">
+	<excludes>
+		<pattern>/index.do</pattern>
+		<!-- <pattern>/stat/statMeasureMonthExcelAjax.do</pattern>
+		<pattern>/stat/statMeasureDayExcelAjax.do</pattern>
+		<pattern>/stat/statMeasureTimeExcelAjax.do</pattern>
+		<pattern>/sale/saleListExcelAjax.do</pattern> -->
+		<pattern>/**/*Ajax.do</pattern>
+		<pattern>/**/*Popup.do</pattern>
+		<pattern>/**/*Excel.do</pattern>
+	</excludes>
+	
+	<decorator name="admin_main" page="admin/mainLayer.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+
+	<decorator name="admin_login" page="admin/loginLayer.jsp">
+		<pattern>/admin/login/*</pattern>
+	</decorator>
+
+	<decorator name="admin_top" page="admin/topPage.jsp" />
+	<decorator name="admin_bottom" page="admin/bottomPage.jsp" />
+	
+	<decorator name="front_main" page="front/mainLayer.jsp">
+		<pattern>/front/*</pattern>
+	</decorator>
+
+	<decorator name="front_blank" page="front/blankLayer.jsp">
+		<pattern>/front/login/logout.do</pattern>
+	</decorator>
+	
+	<decorator name="front_top" page="front/topPage.jsp" />
+	<decorator name="front_bottom" page="front/bottomPage.jsp" />
+	
+</decorators>
