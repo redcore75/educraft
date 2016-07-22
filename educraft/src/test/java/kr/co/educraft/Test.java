@@ -1,12 +1,12 @@
 // ==============================================================//
-// 1. 파 일 명 : Test.java
-// 2. 설 명 :
-// 3. 작 성 자 : lim 2015. 6. 24.
-// 4. 수 정 자 : XXXXXX YYYY.MM.DD
+// 1. ����紐�: Test.java
+// 2. ��紐�:
+// 3. ������: lim 2015. 6. 24.
+// 4. ������: XXXXXX YYYY.MM.DD
 //
 // ==============================================================//
 
-package com.client;
+package kr.co.educraft;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,14 +27,14 @@ public class Test {
         System.out.println(new String(bytes, "UTF-8"));
 
         // 0000080820150714iutra01dxxxx0209531277592901D01DMCIMCI0102SS20150714095312789SVAZ00000001 VAZ-O-0012 0102
-        // AP_ALPY C1 9800000110 9000000400C1�
+        // AP_ALPY C1 9800000110 9000000400C1占�
         // 00000120150714095301101001000000700501201507140953500110000000001200000000000000001000176EC4A6C5DFF3DCA996BEA50500000013039876
         // @@
     }
 
     /**
      * <pre>
-     * Description  : 현재 시간을 가져온다.
+     * Description  : �꾩옱 �쒓컙��媛�졇�⑤떎.
      * </pre>
      */
     public String getNowTime(){
