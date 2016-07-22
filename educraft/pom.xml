@@ -259,60 +259,37 @@
 				</executions>
 			</plugin>            
         </plugins>
+        
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/env/${env}</directory>
+			</resource>
+		</resources>
     </build>
     
-    <!-- 
 	<profiles>
 		<profile>
 			<id>local</id>
-			<build>
-				<finalName>${project.artifactId}</finalName>
-				<directory>${project.basedir}/target</directory>
-				<resources>
-					<resource>
-						<directory>${project.basedir}/src/main/resources</directory>
-					</resource>
-					<resource>
-						<directory>${project.basedir}/src/main/resources/properties/local</directory>
-					</resource>
-				</resources>
-			</build>
+			<properties>
+				<env>local</env>
+			</properties>
 		</profile>
 
 		<profile>
 			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<finalName>${project.artifactId}</finalName>
-				<directory>${project.basedir}/target</directory>
-				<resources>
-					<resource>
-						<directory>${project.basedir}/src/main/resources</directory>
-					</resource>
-					<resource>
-						<directory>${project.basedir}/src/main/resources/properties/dev</directory>
-					</resource>
-				</resources>
-			</build>
+			<properties>
+				<env>dev</env>
+			</properties>
 		</profile>
 
 		<profile>
 			<id>prod</id>
-			<build>
-				<finalName>${project.artifactId}</finalName>
-				<directory>${project.basedir}/target</directory>
-				<resources>
-					<resource>
-						<directory>${project.basedir}/src/main/resources</directory>
-					</resource>
-					<resource>
-						<directory>${project.basedir}/src/main/resources/properties/prod</directory>
-					</resource>
-				</resources>
-			</build>
+			<properties>
+				<env>prod</env>
+			</properties>
 		</profile>
-	</profiles>    
-	-->
+	</profiles>
 </project>
