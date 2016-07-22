@@ -14,7 +14,7 @@
  	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 	    <property name="basenames">
 	        <list>
-	            <value>classpath:/resources/message</value>
+	            <value>classpath:/messages</value>
 	        </list>
 	    </property>
 		<property name="cacheSeconds" value="5" />
