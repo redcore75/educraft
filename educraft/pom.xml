@@ -9,10 +9,13 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
 	<properties>
-		<java-version>1.6</java-version>
+		<java-version>1.7</java-version>
 		<org.springframework-version>3.2.4.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<project.lib.path>${project.basedir}/src/main/webapp/WEB-INF/lib</project.lib.path>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	
 	<dependencies>
@@ -136,6 +139,12 @@
 			<version>1.2</version>
 		</dependency>
 	
+		<dependency>
+    		<groupId>commons-logging</groupId>
+    		<artifactId>commons-logging</artifactId>
+    		<version>1.1.1</version>
+		</dependency>
+	
 		<!-- fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -197,16 +206,7 @@
 		</dependency>        
 	</dependencies>
 	
-    <build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<directory>src/main/env/${env}</directory>
-			</resource>
-		</resources>
-		    
+    <build>		    
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -223,28 +223,18 @@
                 </configuration>
             </plugin>
             
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <!-- 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <configuration>
-                    <mainClass>org.test.int1.Main</mainClass>
-                </configuration>
-            </plugin>
-             -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<encoding>UTF-8</encoding>
+					<optimize>true</optimize>
+				</configuration>
+			</plugin>         
+             
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -267,8 +257,23 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>            
+			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+			</plugin>
         </plugins>
+        
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/env/${env}</directory>
+			</resource>
+		</resources>        
     </build>
     
 	<profiles>
@@ -276,10 +281,12 @@
 			<id>local</id>
 			<properties>
 				<env>local</env>
-			</properties> 			
+			</properties>
+			<!-- 
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			 -->
 		</profile>
 
 		<profile>
