@@ -14,11 +14,11 @@
 	<decorator name="admin_main" page="mainLayer.jsp">
 		<pattern>/admin/*</pattern>
 	</decorator>
-
+	
 	<decorator name="admin_login" page="loginLayer.jsp">
 		<pattern>/admin/login/*</pattern>
 	</decorator>
-
+	
 	<decorator name="admin_top" page="topPage.jsp" />
-	<decorator name="admin_bottom" page="bottomPage.jsp" />	
+	<decorator name="admin_bottom" page="bottomPage.jsp" />
 </decorators>

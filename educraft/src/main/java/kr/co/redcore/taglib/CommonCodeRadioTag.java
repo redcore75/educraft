@@ -1,4 +1,4 @@
-package kr.co.redcore.util.taglib;
+package kr.co.redcore.taglib;
 
 import java.util.List;
 import javax.servlet.jsp.JspException;
@@ -11,8 +11,8 @@ import org.springframework.web.servlet.tags.RequestContextAwareTag;
 import kr.co.redcore.domain.Tbl_common_code;
 import kr.co.redcore.mapper.Tbl_common_codeMapper;
 
-public class CommonCodeRadioButtonTag extends RequestContextAwareTag {
-	private static final Logger logger = LoggerFactory.getLogger(CommonCodeRadioButtonTag.class);
+public class CommonCodeRadioTag extends RequestContextAwareTag {
+	private static final Logger logger = LoggerFactory.getLogger(CommonCodeRadioTag.class);
 	private static final long serialVersionUID = 1L;	
 
 	private String code_group_id;

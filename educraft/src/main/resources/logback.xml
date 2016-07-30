@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+	<!-- TRACE/DEBUG/INFO/WARN/ERROR -->
+
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.apache.ibatis" level="ERROR" />
+
+	<!-- 
+	<logger name="java.sql" level="INFO" /> 
+	<logger name="jdbc.sqlonly" additivity="false" level="DEBUG" /> 
+	<logger name="jdbc.sqltiming" additivity="false" level="DEBUG" /> 
+	<logger name="jdbc.resultsettable" additivity="false" level="ERROR" /> 
+	<logger name="jdbc.audit" additivity="false" level="ERROR" /> 
+	<logger name="jdbc.resultset" additivity="false" level="ERROR" /> 
+	<logger name="jdbc.connection" additivity="false" level="ERROR" /> 
+	<logger name="log4jdbc.debug" additivity="false" level="DEBUG" /> 
+	-->
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${app.home}/logs/daily.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${app.home}/logs/daily.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory> <!-- 파일 저장 기간 -->
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date [%thread] [%-5level] [%logger{36}] %message%xException%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date [%thread] [%-5level] [%logger{36}] %message%xException%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<!-- <appender-ref ref="FILE" /> -->
+	</root>
+</configuration>

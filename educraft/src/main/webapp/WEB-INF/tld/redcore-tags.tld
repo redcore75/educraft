@@ -4,10 +4,10 @@
 	<tlib-version>2.2.3</tlib-version>
 	<jsp-version>1.2</jsp-version>
 	<short-name>cf</short-name>
-	<uri>/WEB-INF/tld/xmerce-tags.tld</uri>
+	<uri>/WEB-INF/tld/redcore-tags.tld</uri>
 	<tag>
-		<name>common_code</name>
-		<tag-class>com.channys.common.taglib.CommonCodeTag</tag-class>
+		<name>common_code_name</name>
+		<tag-class>kr.co.redcore.taglib.CommonCodeNameTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>code_group_id</name>
@@ -22,7 +22,7 @@
 	</tag>
 	<tag>
 		<name>common_code_radio</name>
-		<tag-class>com.channys.common.taglib.CommonCodeRadioButtonTag</tag-class>
+		<tag-class>kr.co.redcore.taglib.CommonCodeRadioTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>code_group_id</name>

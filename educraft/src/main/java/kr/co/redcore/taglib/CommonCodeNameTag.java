@@ -1,4 +1,4 @@
-package kr.co.redcore.util.taglib;
+package kr.co.redcore.taglib;
 
 import javax.servlet.jsp.JspException;
 import org.slf4j.Logger;
