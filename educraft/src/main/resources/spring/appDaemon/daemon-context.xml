@@ -15,5 +15,5 @@
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:component-scan base-package="kr.co.educraft" />
+	<context:component-scan base-package="kr.co.redcore" />
 </beans:beans>

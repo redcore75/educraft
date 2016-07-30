@@ -11,26 +11,14 @@
 		<pattern>/**/*Excel.do</pattern>
 	</excludes>
 	
-	<decorator name="admin_main" page="admin/mainLayer.jsp">
+	<decorator name="admin_main" page="mainLayer.jsp">
 		<pattern>/admin/*</pattern>
 	</decorator>
 
-	<decorator name="admin_login" page="admin/loginLayer.jsp">
+	<decorator name="admin_login" page="loginLayer.jsp">
 		<pattern>/admin/login/*</pattern>
 	</decorator>
 
-	<decorator name="admin_top" page="admin/topPage.jsp" />
-	<decorator name="admin_bottom" page="admin/bottomPage.jsp" />
-	
-	<decorator name="front_main" page="front/mainLayer.jsp">
-		<pattern>/front/*</pattern>
-	</decorator>
-
-	<decorator name="front_blank" page="front/blankLayer.jsp">
-		<pattern>/front/login/logout.do</pattern>
-	</decorator>
-	
-	<decorator name="front_top" page="front/topPage.jsp" />
-	<decorator name="front_bottom" page="front/bottomPage.jsp" />
-	
+	<decorator name="admin_top" page="topPage.jsp" />
+	<decorator name="admin_bottom" page="bottomPage.jsp" />	
 </decorators>

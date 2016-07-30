@@ -9,13 +9,16 @@
 	
 	<tx:annotation-driven/>
 	
-	<util:properties id="configProp" location="classpath:/properties/config.properties"/>
+	<util:properties id="configProp" location="classpath:properties/config.properties"/>
 	
-	<!--메시지 설정 -->
+	<!-- AOP설정 -->
+	<bean id="ControllerAspect" class="kr.co.redcore.aop.ControllerAspect" />
+	
+	<!-- 메시지설정 -->
  	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 	    <property name="basenames">
 	        <list>
-	            <value>classpath:/messages</value>
+	            <value>classpath:messages</value>
 	        </list>
 	    </property>
 		<property name="cacheSeconds" value="5" />
@@ -48,7 +51,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
 		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml" />
-		<property name="typeAliasesPackage" value="kr.co.educraft.domain"></property>
+		<property name="typeAliasesPackage" value="kr.co.redcore.domain, kr.co.educraft.redcore.view"></property>
 	</bean>
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> 
@@ -56,6 +59,6 @@
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.**.**.mapper" />
+		<property name="basePackage" value="kr.**.**.mapper" />
 	</bean>
 </beans>

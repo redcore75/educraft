@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="kr.co.educraft">
+	<logger name="kr.co.redcore">
 		<level value="info" />
 	</logger>
 	

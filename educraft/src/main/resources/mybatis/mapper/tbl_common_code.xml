@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.channys.mapper.CommonCodeMapper">
+<mapper namespace="tbl_common_code">
 		<select id="getPageHelperCntByParamMap" parameterType="HashMap" resultType="long">
 			<![CDATA[
 				SELECT count(*) 
@@ -39,7 +39,7 @@
 				</trim>
 		</select>
 		
-	<select id="getPageHelperByParamMap" parameterType="HashMap" resultType="Vw_CommonCode">
+	<select id="getPageHelperByParamMapEtc" parameterType="HashMap" resultType="vw_common_code">
 		<![CDATA[
 			SELECT * 
 			  FROM 
@@ -92,87 +92,5 @@
 			 WHERE rnum >= #{start} 
 			       AND rnum <= (#{start}-1) + #{size}
 		]]>
-	</select>
-	
-	<insert id="regCommonCode" parameterType="CommonCode">
-		<![CDATA[
-			INSERT into common_code 
-				       ( 
-				         code_id, 
-				         code_name, 
-				         orderby, 
-				         is_valid, 
-				         memo, 
-				         regby, 
-				         regdate, 
-				         uptby, 
-				         uptdate, 
-				         code_group_id 
-				       ) 
-				       VALUES 
-				       ( 
-				         #{code_id}, 
-				         #{code_name}, 
-				         (SELECT * FROM (SELECT IFNULL(MAX(orderby), 0) + 1 
-				           FROM common_code 
-				          WHERE code_group_id = #{code_group_id}
-				         ) as orderby), 
-				         #{is_valid}, 
-				         #{memo}, 
-				         #{regby}, 
-				         NOW(), 
-				         #{uptby}, 
-				         NOW(), 
-				         #{code_group_id} 
-				       )
-		]]>
-	</insert>
-	
-	<select id="getCommonCodeByCode_idEtc" parameterType="HashMap" resultType="Vw_CommonCode">
-		<![CDATA[
-			SELECT code_id,
-				       code_name,
-				       is_valid,
-				       is_del,
-				       memo,
-				       regby,
-				       date_format(regdate, '%Y/%m/%d') as regdate,
-				       uptby,
-				       date_format(uptdate, '%Y/%m/%d') as uptdate,
-				       code_group_id,
-				       FN_COMMON_CODE_GROUP_NAME(code_group_id) as code_group_name FROM common_code WHERE code_id = #{code_id} AND code_group_id = #{code_group_id}
-		]]>
-	</select>
-	
-	<update id="uptCommonCode" parameterType="CommonCode">
-		<![CDATA[
-			UPDATE common_code 
-				 SET code_name = #{code_name}, 
-				       is_valid = #{is_valid},
-				       memo = #{memo}, 
-				       uptby = #{uptby}, 
-				       uptdate = NOW() 
-			 WHERE code_id = #{code_id} AND code_group_id = #{code_group_id}
-		]]>
-	</update>
-	
-	<update id="uptCommonCodeForIs_del" parameterType="CommonCode">
-		<![CDATA[
-			UPDATE common_code 
-				 SET is_del = 'Y',
-				       uptby = #{uptby}, 
-				       uptdate = NOW() 
-			 WHERE code_id = #{code_id} AND code_group_id = #{code_group_id}
-		]]>
-	</update>
-	
-	<select id="getCommonCodeByCode_group_id" parameterType="String" resultType="CommonCode">
-		<![CDATA[
-			SELECT code_id,
-				       code_name,
-				       code_group_id
-			  FROM common_code WHERE code_group_id = #{code_group_id}
-		    ORDER BY code_group_id, orderby
-		]]>
-	</select>
+	</select>	
 </mapper>

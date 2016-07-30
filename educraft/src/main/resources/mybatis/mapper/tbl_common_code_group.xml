@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.channys.mapper.CommonCodeGroupMapper">
+<mapper namespace="tbl_common_code_group">
 	<select id="getPageHelperCntByParamMap" parameterType="HashMap" resultType="long">
 		<![CDATA[
 		SELECT count(*)
@@ -20,7 +20,7 @@
 		</trim>
 	</select>
 	
-	<select id="getPageHelperByParamMap" parameterType="HashMap" resultType="CommonCodeGroup">
+	<select id="getPageHelperByParamMapEtc" parameterType="HashMap" resultType="tbl_common_code_group">
 		<![CDATA[
 		SELECT rnum, code_group_id, code_group_name, is_valid, is_del, memo,
 				       regby,

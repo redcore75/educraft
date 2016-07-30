@@ -197,6 +197,12 @@
 			<version>4.2.0.Final</version>
 		</dependency>		
 		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.30</version>
+		</dependency>		
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -282,11 +288,9 @@
 			<properties>
 				<env>local</env>
 			</properties>
-			<!-- 
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			 -->
 		</profile>
 
 		<profile>
