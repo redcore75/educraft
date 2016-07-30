@@ -63,6 +63,24 @@
     	<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<filter>
+		<filter-name>LoginAdminFilter</filter-name>
+		<filter-class>kr.co.redcore.filter.LoginAdminFilter</filter-class>
+		<init-param>
+			<param-name>fileExt</param-name>
+			<param-value>jsp,do</param-value>
+		</init-param>
+		<init-param>
+			<param-name>notCheck</param-name>
+			<param-value>/admin/login/</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>LoginAdminFilter</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
