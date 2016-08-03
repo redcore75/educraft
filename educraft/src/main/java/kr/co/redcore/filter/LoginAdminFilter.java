@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import kr.co.redcore.GlobalConstants;
 import kr.co.redcore.service.member.LoginService;
 
 public class LoginAdminFilter implements Filter {
@@ -83,7 +84,7 @@ public class LoginAdminFilter implements Filter {
 				logger.debug("LoginAdminFilter >>> check isLogin");
 				
 				LoginService loginService = new LoginService();
-				if (!loginService.isLogin(request)) {
+				if (!loginService.isLogin(request, GlobalConstants.ADMIN_LOGININFO_KEY)) {
 					logger.debug("------------------ not login status ------------");
 					response.sendRedirect(request.getContextPath() + "/admin/login/loginForm.do");
 					return;
@@ -91,6 +92,7 @@ public class LoginAdminFilter implements Filter {
 			}
 
 			request.setAttribute("IS_ADMINLOGIN_CHECK", "true");
+			//logger.debug("LoginAdminFilter >>> IS_ADMINLOGIN_CHECK setting...");
 		}
 		
 		filterChain.doFilter(request, servletResponse);
