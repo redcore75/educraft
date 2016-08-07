@@ -2,11 +2,14 @@ package kr.co.redcore.mapper.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import kr.co.redcore.domain.Tbl_member;
 import kr.co.redcore.mapper.Tbl_memberMapper;
+import kr.co.redcore.util.ParamMap;
 
 @Repository
 public class Tbl_memberMapperImpl implements Tbl_memberMapper {
@@ -21,6 +24,18 @@ public class Tbl_memberMapperImpl implements Tbl_memberMapper {
 		param.put("member_id", member_id);
 		param.put("password", password);
 		
-		return sqlSession.selectOne("getTbl_memberByMember_idEtc", param);
+		return sqlSession.selectOne("Tbl_member.getTbl_memberByMember_idEtc", param);
 	}
+	
+	public long getPageHelperCntByParamMap(ParamMap paramMap) throws SQLException {
+		return sqlSession.selectOne("Tbl_member.getPageHelperCntByParamMap", paramMap);
+	}
+	
+	public List getPageHelperListByParamMapEtc(long start, long size, ParamMap paramMap) throws SQLException {
+		paramMap.put("start", (int)start);
+		paramMap.put("size", (int)size);
+		
+		return sqlSession.selectList("Tbl_member.getPageHelperListByParamMapEtc", paramMap);
+	}
+	
 }

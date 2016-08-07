@@ -4,9 +4,116 @@
 <mapper namespace="Tbl_member">
 	<select id="getTbl_memberByMember_idEtc" parameterType="HashMap" resultType="Tbl_member">
 		<![CDATA[
-		SELECT *
+		SELECT member_seq,		       
+		       member_id,
+		       member_name,
+		       password,
+		       ifnull(email_addr, '') AS email_addr,
+		       ifnull(mobile_num, '') AS mobile_num,
+		       is_valid,
+		       is_del,
+		       ifnull(memo, '') AS memo,
+		       member_level_seq,
+		       regby,
+		       date_format(regdate, '%Y%m%d') AS regdate,
+		       uptby,
+		       date_format(uptdate, '%Y%m%d') AS uptdate
 		  FROM tbl_member
 		 WHERE member_id = #{member_id} AND password = #{password}
 		]]>
 	</select>
+	
+	<select id="getPageHelperCntByParamMap" parameterType="HashMap" resultType="Long">
+		<![CDATA[
+		SELECT COUNT(*)
+		  FROM tbl_member
+		 WHERE     IS_DEL != 'Y'		 
+			]]><trim prefix="AND">
+				<if test="sch_member_id != null">
+					member_id = '#{sch_member_id}'
+				</if>
+				<if test="sch_member_id != null">
+					member_name LIKE CONCAT('%', '#{sch_member_name}', '%')
+				</if>
+				<if test="sch_member_id != null">
+					<![CDATA[ regdate >= STR_TO_DATE('#{sch_start_date}', '%Y%m%d') ]]>
+				</if>
+				<if test="sch_member_id != null">
+					<![CDATA[ regdate < STR_TO_DATE('#{sch_end_date}', '%Y%m%d') ]]>
+				</if>
+			</trim><![CDATA[
+		]]>
+	</select>
+	
+	<select id="getPageHelperListByParamMapEtc" parameterType="HashMap" resultType="Tbl_member">
+		<![CDATA[
+		SELECT member_seq,		       
+		       member_id,
+		       member_name,
+		       password,
+		       ifnull(email_addr, '') AS email_addr,
+		       ifnull(mobile_num, '') AS mobile_num,
+		       is_valid,
+		       is_del,
+		       ifnull(memo, '') AS memo,
+		       member_level_seq,
+		       regby,
+		       date_format(regdate, '%Y%m%d') AS regdate,
+		       uptby,
+		       date_format(uptdate, '%Y%m%d') AS uptdate
+		  FROM tbl_member
+		       INNER JOIN (SELECT member_seq
+		                     FROM tbl_member
+		                    WHERE     IS_DEL != 'Y'		                    
+								]]><trim prefix="AND">
+									<if test="sch_member_id != null">
+										member_id = '#{sch_member_id}'
+									</if>
+									<if test="sch_member_id != null">
+										member_name LIKE CONCAT('%', '#{sch_member_name}', '%')
+									</if>
+									<if test="sch_member_id != null">
+										<![CDATA[ regdate >= STR_TO_DATE('#{sch_start_date}', '%Y%m%d') ]]>
+									</if>
+									<if test="sch_member_id != null">
+										<![CDATA[ regdate < STR_TO_DATE('#{sch_end_date}', '%Y%m%d') ]]>
+									</if>
+								</trim><![CDATA[
+						   ORDER BY member_seq DESC
+							LIMIT #{start}, #{size}
+		                    ) AS sub
+		          USING (member_seq)
+		]]>
+	</select>
+	
+	<insert id="insertTbl_member" parameterType="Tbl_member">
+		<![CDATA[
+		INSERT INTO tbl_member(member_id,
+		                       member_name,
+		                       password,
+		                       email_addr,
+		                       mobile_num,
+		                       is_valid,
+		                       is_del,
+		                       memo,
+		                       member_level_seq,
+		                       regby,
+		                       regdate,
+		                       uptby,
+		                       uptdate)
+		VALUES (#{member_id},
+		        #{member_name},
+		        #{password},
+		        #{email_addr},
+		        #{mobile_num},
+		        #{is_valid},
+		        #{is_del},
+		        #{memo},
+		        #{member_level_seq},
+		        #{regby},
+		        sysdate(),
+		        #{uptby},
+		        sysdate())
+		]]>
+	</insert>
 </mapper>

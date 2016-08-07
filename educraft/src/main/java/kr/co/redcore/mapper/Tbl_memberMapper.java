@@ -7,6 +7,6 @@ import kr.co.redcore.util.ParamMap;
 
 public interface Tbl_memberMapper {
 	public Tbl_member getTbl_memberByMember_idEtc(String member_id, String password) throws SQLException;
-	//public long getPageHelperCntByParamMap(ParamMap paramMap) throws SQLException;
-	//public List getPageHelperByParamMapEtc(long start, long size, ParamMap paramMap) throws SQLException;
+	public long getPageHelperCntByParamMap(ParamMap paramMap) throws SQLException;
+	public List getPageHelperListByParamMapEtc(long start, long size, ParamMap paramMap) throws SQLException;
 }

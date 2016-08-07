@@ -3,19 +3,10 @@
 <configuration>
 	<settings>
 		<setting name="cacheEnabled" value="false" />
-
 		<setting name="useGeneratedKeys" value="true" />
 		<setting name="defaultExecutorType" value="REUSE" />
 		<!-- <setting name="mapUnderscoreToCamelCase" value="true" /> -->
-		<setting name="jdbcTypeForNull" value="VARCHAR" /> <!-- 파라미터가 null 인 경우 처리. ( ex: #{param,jdbcType=VARCHAR} 처리. ) -->
-	</settings>
-	
-	<!-- 
-	<typeAliases>
-		<typeAlias alias="" type="" />
-	</typeAliases>
-	<mappers>
-		<mapper resource="" />
-	</mappers>
- 	-->
+		<setting name="jdbcTypeForNull" value="VARCHAR" />
+		<setting name="callSettersOnNulls" value="true"/>
+	</settings>	
 </configuration>

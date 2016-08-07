@@ -19,19 +19,23 @@ response.setDateHeader("Expires", 0);
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-	
-	<style type="text/css">
-		input.error, textarea.error{border:1px dashed red;}
-		label.error{margin-left:10px;color:red;}
-	</style>	
-	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>	
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/AdminLTE.min.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/_all-skins.min.css"/>			
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/datepicker3.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	
+    <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>    
+    <script src="${pageContext.request.contextPath}/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/plugins/datepicker/locales/bootstrap-datepicker.kr.js"></script>
+    
 	<script type="text/javascript">
 		$(document).ready(function(){
 			// readonly 에서 백스페이스 무시.
@@ -39,6 +43,12 @@ response.setDateHeader("Expires", 0);
 				if ( event.keyCode === 8 ) {
 					return false;
 				}
+			});
+			
+			$(".datepicker").datepicker({
+				language: "kr",
+				format: "yyyymmdd",
+				autoclose: true
 			});
 		});
 	</script>

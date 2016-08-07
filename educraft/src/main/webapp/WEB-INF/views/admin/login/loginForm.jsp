@@ -13,8 +13,8 @@
 					password: { required: true },
 				},
 				messages: {
-					member_id: { required: "아이디를 입력하시오." },
-					password: { required: "암호를 입력하시오." },
+					member_id: { required: "아이디를 입력하세요." },
+					password: { required: "비밀번호를 입력하세요." },
 				},
 				submitHandler: function (form) {
 					form.submit();
@@ -29,17 +29,34 @@
 	</script>
 </head>
 <body>
-    <div class="container">
-		<form class="form-signin" id="loginForm" name="loginForm" method="post" action="login.do">
-			<h2 class="form-signin-heading">관리자로그인</h2>
-			<label for="member_id" class="sr-only">아이디</label>
-			<input type="text" id="member_id" name="member_id" class="form-control" placeholder="아이디를 입력하시오." autofocus/>
-			<label for="password" class="sr-only">비밀번호</label>
-			<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력하시오."/>
-			<div class="checkbox">
-				<label><input type="checkbox" id="remember"/>아이디저장</label>
-        	</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-		</form>
-    </div>
+	
+	<div class="login-box">
+  		<div class="login-logo">
+    		관리자로그인
+  		</div>
+  		<!-- /.login-logo -->
+  		<div class="login-box-body">
+    		<form class="form-signin" id="loginForm" name="loginForm" method="post" action="login.do">
+      			<div class="form-group has-feedback">
+					<input type="text" id="member_id" name="member_id" class="form-control" placeholder="아이디를 입력하세요." autofocus/>
+        			<span class="glyphicon glyphicon-user form-control-feedback"></span>
+      			</div>
+      			<div class="form-group has-feedback">
+        			<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력하세요."/>
+        			<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      			</div>
+      			<div class="row">
+	        		<div class="col-xs-8" align="right">
+	          			<div class="checkbox icheck">
+	            			<label><input type="checkbox" id="remember"/> 아이디저장</label>
+	          			</div>
+	        		</div>
+	        		<div class="col-xs-4">
+	          			<button type="submit" class="btn btn-primary btn-block btn-flat">로그인</button>
+	        		</div>
+      			</div>
+    		</form>
+		</div>
+	</div>
+    
 </body>

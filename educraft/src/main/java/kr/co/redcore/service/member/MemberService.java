@@ -21,17 +21,11 @@ public class MemberService extends PageObject {
 	public Tbl_member getTbl_memberByMember_idEtc(String member_id, String password) throws Exception {
 		return tbl_memberMapper.getTbl_memberByMember_idEtc(member_id, password);		
 	}
-
-	@Override
-	public PageHelper getPageHelperByParamEtc(ParamMap paramMap, PageHelper pageHelper) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-//	public PageHelper getPageHelperByParamEtc(ParamMap paramMap, PageHelper pageHelper) throws Exception {
-//		pageHelper.setTotalRows(tbl_memberMapper.getPageHelperCntByParamMap(paramMap));
-//		pageHelper.setList(tbl_memberMapper.getPageHelperByParamMapEtc(pageHelper.getStartRow(), pageHelper.getPageSize(), paramMap));
-//
-//		return pageHelper;
-//	}
+	public PageHelper getPageHelperByParamEtc(ParamMap paramMap, PageHelper pageHelper) throws Exception {
+		pageHelper.setTotalRows(tbl_memberMapper.getPageHelperCntByParamMap(paramMap));
+		pageHelper.setList(tbl_memberMapper.getPageHelperListByParamMapEtc(pageHelper.getStartRow(), pageHelper.getPageSize(), paramMap));
+
+		return pageHelper;
+	}
 }

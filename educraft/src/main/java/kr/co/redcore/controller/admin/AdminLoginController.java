@@ -16,7 +16,7 @@ import kr.co.redcore.domain.Tbl_member;
 import kr.co.redcore.service.member.LoginService;
 
 @Controller
-public class AdminLoginController {
+public class AdminLoginController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminLoginController.class);
 	
 	@Autowired
