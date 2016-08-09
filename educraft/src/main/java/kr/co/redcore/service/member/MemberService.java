@@ -24,7 +24,7 @@ public class MemberService extends PageObject {
 	
 	public PageHelper getPageHelperByParamEtc(ParamMap paramMap, PageHelper pageHelper) throws Exception {
 		pageHelper.setTotalRows(tbl_memberMapper.getPageHelperCntByParamMap(paramMap));
-		pageHelper.setList(tbl_memberMapper.getPageHelperListByParamMapEtc(pageHelper.getStartRow(), pageHelper.getPageSize(), paramMap));
+		pageHelper.setList(tbl_memberMapper.getPageHelperListByParamMapEtc(pageHelper.getStartRow() - 1, pageHelper.getPageSize(), paramMap));
 
 		return pageHelper;
 	}

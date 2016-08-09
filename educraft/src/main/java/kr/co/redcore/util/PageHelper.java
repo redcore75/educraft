@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PageHelper {
 	public static final long DEFAULT_GROUP_SIZE = 10;
-	public static final long DEFAULT_PAGE_SIZE = 100;
+	public static final long DEFAULT_PAGE_SIZE = 10;
 
 	private long currPage;
 	private long groupSize;

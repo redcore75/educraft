@@ -6,7 +6,6 @@
 <%@ taglib prefix="form" 		uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="decorator" 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="page" 		uri="http://www.opensymphony.com/sitemesh/page"%>
-<%@ taglib prefix="f"           uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="cf"          uri="/WEB-INF/tld/redcore-tags.tld"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ page import="java.util.*"%>

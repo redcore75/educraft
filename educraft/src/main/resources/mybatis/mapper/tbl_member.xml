@@ -8,6 +8,7 @@
 		       member_id,
 		       member_name,
 		       password,
+		       member_type,
 		       ifnull(email_addr, '') AS email_addr,
 		       ifnull(mobile_num, '') AS mobile_num,
 		       is_valid,
@@ -27,62 +28,71 @@
 		<![CDATA[
 		SELECT COUNT(*)
 		  FROM tbl_member
-		 WHERE     IS_DEL != 'Y'		 
-			]]><trim prefix="AND">
-				<if test="sch_member_id != null">
-					member_id = '#{sch_member_id}'
-				</if>
-				<if test="sch_member_id != null">
-					member_name LIKE CONCAT('%', '#{sch_member_name}', '%')
-				</if>
-				<if test="sch_member_id != null">
-					<![CDATA[ regdate >= STR_TO_DATE('#{sch_start_date}', '%Y%m%d') ]]>
-				</if>
-				<if test="sch_member_id != null">
-					<![CDATA[ regdate < STR_TO_DATE('#{sch_end_date}', '%Y%m%d') ]]>
-				</if>
-			</trim><![CDATA[
+		 WHERE IS_DEL != 'Y'		 
+		]]><trim>
+			<if test="sch_member_id != null and sch_member_id != ''">
+				AND member_id = #{sch_member_id}
+			</if>
+			<if test="sch_member_name != null and sch_member_name != ''">
+				AND member_name LIKE CONCAT('%', #{sch_member_name}, '%')
+			</if>
+			<if test="sch_member_type != null and sch_member_type != ''">
+				AND member_type = #{sch_member_type}
+			</if>
+			<if test="sch_start_date != null and sch_start_date != ''">
+				<![CDATA[ AND regdate >= STR_TO_DATE(#{sch_start_date}, '%Y%m%d') ]]>
+			</if>
+			<if test="sch_end_date != null and sch_end_date != ''">
+				<![CDATA[ AND regdate < STR_TO_DATE(#{sch_end_date}, '%Y%m%d') ]]>
+			</if>
+		</trim><![CDATA[
 		]]>
 	</select>
 	
-	<select id="getPageHelperListByParamMapEtc" parameterType="HashMap" resultType="Tbl_member">
+	<select id="getPageHelperListByParamMapEtc" parameterType="HashMap" resultType="Vw_member">
 		<![CDATA[
-		SELECT member_seq,		       
-		       member_id,
-		       member_name,
-		       password,
-		       ifnull(email_addr, '') AS email_addr,
-		       ifnull(mobile_num, '') AS mobile_num,
-		       is_valid,
-		       is_del,
-		       ifnull(memo, '') AS memo,
-		       member_level_seq,
-		       regby,
-		       date_format(regdate, '%Y%m%d') AS regdate,
-		       uptby,
-		       date_format(uptdate, '%Y%m%d') AS uptdate
-		  FROM tbl_member
-		       INNER JOIN (SELECT member_seq
-		                     FROM tbl_member
-		                    WHERE     IS_DEL != 'Y'		                    
-								]]><trim prefix="AND">
-									<if test="sch_member_id != null">
-										member_id = '#{sch_member_id}'
-									</if>
-									<if test="sch_member_id != null">
-										member_name LIKE CONCAT('%', '#{sch_member_name}', '%')
-									</if>
-									<if test="sch_member_id != null">
-										<![CDATA[ regdate >= STR_TO_DATE('#{sch_start_date}', '%Y%m%d') ]]>
-									</if>
-									<if test="sch_member_id != null">
-										<![CDATA[ regdate < STR_TO_DATE('#{sch_end_date}', '%Y%m%d') ]]>
-									</if>
-								</trim><![CDATA[
-						   ORDER BY member_seq DESC
-							LIMIT #{start}, #{size}
-		                    ) AS sub
-		          USING (member_seq)
+		SELECT tm.member_seq,
+		       tm.member_id,
+		       tm.member_name,
+		       tm.password,
+		       tm.member_type,
+		       ifnull(tm.email_addr, '') AS email_addr,
+		       ifnull(tm.mobile_num, '') AS mobile_num,
+		       tm.is_valid,
+		       tm.is_del,
+		       ifnull(tm.memo, '') AS memo,
+		       tm.member_level_seq,
+		       tml.level_name,
+		       tm.regby,
+		       date_format(tm.regdate, '%Y%m%d') AS regdate,
+		       tm.uptby,
+		       date_format(tm.uptdate, '%Y%m%d') AS uptdate
+		  FROM tbl_member tm,
+		       (SELECT member_seq
+		          FROM tbl_member
+		         WHERE IS_DEL != 'Y'
+				]]><trim>
+					<if test="sch_member_id != null and sch_member_id != ''">
+						AND member_id = #{sch_member_id}
+					</if>
+					<if test="sch_member_name != null and sch_member_name != ''">
+						AND member_name LIKE CONCAT('%', #{sch_member_name}, '%')
+					</if>
+					<if test="sch_member_type != null and sch_member_type != ''">
+						AND member_type = #{sch_member_type}
+					</if>					
+					<if test="sch_start_date != null and sch_start_date != ''">
+						<![CDATA[ AND regdate >= STR_TO_DATE(#{sch_start_date}, '%Y%m%d') ]]>
+					</if>
+					<if test="sch_end_date != null and sch_end_date != ''">
+						<![CDATA[ AND regdate < STR_TO_DATE(#{sch_end_date}, '%Y%m%d') ]]>
+					</if>
+				</trim><![CDATA[
+		        ORDER BY member_seq DESC
+		         LIMIT #{start}, #{size}) AS sub,
+		       tbl_member_level tml
+		 WHERE     tm.member_seq = sub.member_seq
+		       AND tm.member_level_seq = tml.member_level_seq
 		]]>
 	</select>
 	
@@ -91,6 +101,7 @@
 		INSERT INTO tbl_member(member_id,
 		                       member_name,
 		                       password,
+		                       member_type,
 		                       email_addr,
 		                       mobile_num,
 		                       is_valid,
@@ -104,6 +115,7 @@
 		VALUES (#{member_id},
 		        #{member_name},
 		        #{password},
+		        #{member_type},
 		        #{email_addr},
 		        #{mobile_num},
 		        #{is_valid},

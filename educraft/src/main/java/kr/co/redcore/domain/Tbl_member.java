@@ -17,13 +17,20 @@ public class Tbl_member extends BaseObject {
 
 	@NotBlank(message = "비밀번호를 입력하세요.")
 	private String password;
+	private String member_type;
 	private String email_addr;
 	private String mobile_num;
+	private long curr_point;// 현재포인트
 
 	@NotBlank(message = "사용여부를 선택하세요.")
 	private String is_valid;
 	private String is_del;
 	private String memo;
+
+	private String recom_member_id;// 추천인아이디
+	private String recom_type;// 추천인타입
+	private String recom_group;// 추천인소속
+
 	private String regby;
 	private String regdate;
 	private String uptby;
@@ -69,6 +76,14 @@ public class Tbl_member extends BaseObject {
 		this.password = password;
 	}
 
+	public String getMember_type() {
+		return member_type;
+	}
+
+	public void setMember_type(String member_type) {
+		this.member_type = member_type;
+	}
+
 	public String getEmail_addr() {
 		return email_addr;
 	}
@@ -107,6 +122,38 @@ public class Tbl_member extends BaseObject {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public long getCurr_point() {
+		return curr_point;
+	}
+
+	public void setCurr_point(long curr_point) {
+		this.curr_point = curr_point;
+	}
+
+	public String getRecom_member_id() {
+		return recom_member_id;
+	}
+
+	public void setRecom_member_id(String recom_member_id) {
+		this.recom_member_id = recom_member_id;
+	}
+
+	public String getRecom_type() {
+		return recom_type;
+	}
+
+	public void setRecom_type(String recom_type) {
+		this.recom_type = recom_type;
+	}
+
+	public String getRecom_group() {
+		return recom_group;
+	}
+
+	public void setRecom_group(String recom_group) {
+		this.recom_group = recom_group;
 	}
 
 	public String getRegby() {

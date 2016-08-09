@@ -2,6 +2,6 @@
 <body>
 <script>
 	alert("로그인에 성공했습니다.");
-	window.location = "${pageContext.request.contextPath}/admin/member/searchList.do";
+	window.location = "${pageContext.request.contextPath}/admin/admin_member/searchList.do";
 </script>
 </body>

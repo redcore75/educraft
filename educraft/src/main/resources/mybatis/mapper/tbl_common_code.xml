@@ -1,96 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="tbl_common_code">
-		<select id="getPageHelperCntByParamMap" parameterType="HashMap" resultType="long">
-			<![CDATA[
-				SELECT count(*) 
-				  FROM 
-				       (SELECT code_id, 
-				              code_name, 
-				              is_valid, 
-				              is_del, 
-				              memo, 
-				              regby, 
-				              regdate, 
-				              uptby, 
-				              uptdate, 
-				              code_group_id, 
-				              FN_COMMON_CODE_GROUP_NAME(code_group_id) as code_group_name 
-				         FROM common_code cc 
-				       ) a 
-				 WHERE is_del != 'Y'
-			]]><trim prefix="AND">
-					<if test="sch_option != null and sch_option == 1">
-						(code_group_name like CONCAT('%', #{sch_value}, '%') OR code_id = #{sch_value} OR code_name like CONCAT('%', #{sch_value}, '%'))
-					</if>
-					<if test="sch_option != null and sch_option == 2">
-						code_group_name like CONCAT('%', #{sch_value}, '%')
-					</if>
-					<if test="sch_option != null and sch_option == 3">
-						code_id = #{sch_value}
-					</if>
-					<if test="sch_option != null and sch_option == 4">
-						code_name like CONCAT('%', #{sch_value}, '%')
-					</if>
-					<if test="code_group_id != null">
-						code_group_id = #{code_group_id}
-					</if>
-				</trim>
-		</select>
-		
-	<select id="getPageHelperByParamMapEtc" parameterType="HashMap" resultType="vw_common_code">
+<mapper namespace="Tbl_common_code">
+	<select id="getVw_common_codeByParamMap" parameterType="HashMap" resultType="Vw_common_code">
 		<![CDATA[
-			SELECT * 
-			  FROM 
-			       (SELECT (@row_num:=@row_num+1)as rnum, 
-			              code_id, 
-			              code_name, 
-			              is_valid, 
-			              is_del, 
-			              memo, 
-			              regby, 
-			              date_format(regdate, '%Y/%m/%d') as regdate, 
-			              uptby, 
-			              date_format(uptdate, '%Y/%m/%d') as uptdate, 
-			              code_group_id, 
-			              code_group_name 
-			         FROM 
-			              (SELECT code_id, 
-			                     code_name, 
-			                     is_valid, 
-			                     is_del, 
-			                     memo, 
-			                     regby, 
-			                     regdate, 
-			                     uptby, 
-			                     uptdate, 
-			                     code_group_id, 
-			                     FN_COMMON_CODE_GROUP_NAME(code_group_id) as code_group_name 
-			                FROM common_code cc 
-			            ORDER BY regdate DESC 
-			              ) a, (SELECT(@row_num:=0)) r 
-			        WHERE is_del != 'Y' 
-			        ]]><trim prefix="AND">
-			        <if test="sch_option != null and sch_option == 1">
-						(code_group_name like CONCAT('%', #{sch_value}, '%') OR code_id = #{sch_value} OR code_name like CONCAT('%', #{sch_value}, '%'))
-					</if>
-			        <if test="sch_option != null and sch_option == 2">
-			         	code_group_name like CONCAT('%', #{sch_value}, '%')
-			         </if>
-			         <if test="sch_option != null and sch_option == 3">
-			         	code_id = #{sch_value}
-			         </if>
-			         <if test="sch_option != null and sch_option == 4">
-			         	code_name like CONCAT('%', #{sch_value}, '%')
-			         </if>
-			         <if test="code_group_id != null">
-			         	code_group_id = #{code_group_id}
-			         </if>
-			         </trim><![CDATA[
-			       ) a 
-			 WHERE rnum >= #{start} 
-			       AND rnum <= (#{start}-1) + #{size}
+		SELECT tcc.*, tccg.code_group_name
+		  FROM tbl_common_code_group tccg, tbl_common_code tcc
+		 WHERE     tccg.code_group_id = tcc.code_group_id
+		       AND tcc.code_id = #{code_id}
+		       AND tcc.code_group_id = #{code_group_id}
 		]]>
-	</select>	
+	</select>
+	
+	<select id="getTbl_common_codeListByCode_group_id" parameterType="String" resultType="Vw_common_code">
+		<![CDATA[
+		SELECT *
+		  FROM tbl_common_code
+		 WHERE code_group_id = #{code_group_id}
+		]]>
+	</select>
 </mapper>
