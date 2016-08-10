@@ -33,7 +33,7 @@ public class LoginService {
 	}
 
 	public boolean isLogin(HttpServletRequest request, String key) {
-		return (getLoginInfo(request, key) != null);
+		return (getLoginInfo(request, key) != null ? true : false);
 	}
 
 	public Tbl_member getLoginInfo(HttpServletRequest request, String key) {

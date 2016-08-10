@@ -15,7 +15,7 @@ public class Tbl_common_codeMapperImpl implements Tbl_common_codeMapper {
 	private SqlSessionTemplate sqlSession;	
 
 	@Override
-	public Vw_common_code getVw_common_codeByParamMap(ParamMap paramMap) {
+	public Vw_common_code getVw_common_codeByParamMap(ParamMap paramMap) throws SQLException {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("Tbl_member.getVw_common_codeByParamMap", paramMap);
 	}

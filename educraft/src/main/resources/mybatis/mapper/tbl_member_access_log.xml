@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Tbl_member_access_log">	
+	<insert id="insertTbl_member_access_log" parameterType="Tbl_member_access_log">
+		<![CDATA[
+		INSERT INTO tbl_member_access_log(member_seq,
+		                                  member_id,
+		                                  ip_addr,
+		                                  access_url,
+		                                  regby,
+		                                  regdate)
+		VALUES (#{member_seq},
+		        #{member_id},
+		        #{ip_addr},
+		        #{access_url},
+		        #{regby},
+		        sysdate())
+		]]>
+	</insert>
+</mapper>

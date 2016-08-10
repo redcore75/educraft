@@ -12,12 +12,23 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.util.StopWatch;
+import kr.co.redcore.GlobalConstants;
+import kr.co.redcore.domain.Tbl_member;
+import kr.co.redcore.domain.Tbl_member_access_log;
+import kr.co.redcore.mapper.Tbl_memberMapper;
+import kr.co.redcore.service.member.LoginService;
+import kr.co.redcore.service.member.MemberAccessLogService;
 
 @Aspect
 public class ControllerAspect {
 	private static final Logger logger = LoggerFactory.getLogger(ControllerAspect.class);
-
+	
+//	@Autowired
+//	private LoginService loginService;		
+	
 	@Pointcut("execution(* kr.co.redcore..*Controller.**(..))")
 	public void allControllerMethod() {
 	}
@@ -61,10 +72,32 @@ public class ControllerAspect {
 				logger.debug(key + " = " + httpReq.getParameter(key));
 			}
 			logger.debug("################################################################################");
+//			
+//			if(loginService != null) {			
+//				logger.debug(">>>>> " + loginService.isLogin(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY));
+//			} else {
+//				logger.debug(">ssfdsafdsfsdf>>>> " + loginService.isLogin(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY));
+//			}
+
+			/*
+			if(loginService.isLogin(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY)) {
+				Tbl_member tbl_member = loginService.getLoginInfo(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY);
+				
+				Tbl_member_access_log tbl_member_access_log = new Tbl_member_access_log();
+				tbl_member_access_log.setMember_seq(tbl_member.getMember_seq());
+				tbl_member_access_log.setMember_id(tbl_member.getMember_id());
+				tbl_member_access_log.setIp_addr(httpReq.getRemoteAddr());
+				tbl_member_access_log.setAccess_url( httpReq.getRequestURI());				
+				memberAccessLogService.insertTbl_member_access_log(tbl_member_access_log);
+				
+				logger.debug("URL => " + httpReq.getRequestURI() + " : access log insert !!!");
+			}*/
 		} else {
 			logger.debug("HttpServletRequest is null");
 		}
 
+
+		
 		logger.debug("### Controller Before Advice End !! ###");
 		logger.debug("------------------- controller start -----------------------------------------------------");
 	}

@@ -6,13 +6,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-	
+
 	<tx:annotation-driven/>
-	
 	<util:properties id="configProp" location="classpath:properties/config.properties"/>
 	
 	<!-- AOP설정 -->
-	<bean id="ControllerAspect" class="kr.co.redcore.aop.ControllerAspect" />
+	<bean id="ControllerAspect" class="kr.co.redcore.aop.ControllerAspect"/>
 	
 	<!-- 메시지설정 -->
  	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -30,6 +29,11 @@
 		<property name="maxUploadSize" value="20000000" />
 	</bean>
 	
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:/comp/env/jdbc/redcore" />
+ 	</bean>
+	
+	<!-- 
     <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
 		<property name="driver" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://122.129.251.106:3306/educraft" />
@@ -42,6 +46,7 @@
         <property name="poolMaximumActiveConnections" value="50"/>
         <property name="poolMaximumIdleConnections" value="5"/>
 	</bean>
+	-->
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />

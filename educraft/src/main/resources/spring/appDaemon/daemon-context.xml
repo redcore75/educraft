@@ -11,6 +11,7 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	<context:annotation-config/>
 	<aop:config proxy-target-class="true"/>
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
