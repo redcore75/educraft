@@ -17,12 +17,12 @@ public class Tbl_common_codeMapperImpl implements Tbl_common_codeMapper {
 	@Override
 	public Vw_common_code getVw_common_codeByParamMap(ParamMap paramMap) throws SQLException {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("Tbl_member.getVw_common_codeByParamMap", paramMap);
+		return sqlSession.selectOne("Tbl_common_code.getVw_common_codeByParamMap", paramMap);
 	}
 
 	@Override
 	public List getTbl_common_codeListByCode_group_id(String code_group_id) throws SQLException {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("Tbl_member.getTbl_common_codeListByCode_group_id", code_group_id);
+		return sqlSession.selectList("Tbl_common_code.getTbl_common_codeListByCode_group_id", code_group_id);
 	}
 }

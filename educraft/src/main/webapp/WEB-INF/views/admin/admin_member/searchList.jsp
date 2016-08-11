@@ -145,7 +145,7 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
 	                  					<td>${list.member_id}</td>
 	                  					<td>${list.member_name}</td>
 	                  					<td>${list.email_addr}</td>
-	                  					<td>${list.is_valid}</td>
+	                  					<td><cf:common_code_name code_group_id="IS_VALID" code_id="${list.is_valid}" /></td>
 	                  					<td>${list.regdate}</td>
 	                  					<td>${list.uptdate}</td>
 	                				</tr>

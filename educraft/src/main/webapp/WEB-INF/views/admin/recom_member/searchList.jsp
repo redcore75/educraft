@@ -59,6 +59,28 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
             			</div>
             			<!-- /.col -->
 					</div>
+          			<div class="row">
+            			<div class="col-md-6">
+              				<div class="form-group">
+								<div class="row">
+									<div class="col-md-2"><label>계정구분</label></div>
+									<div class="col-md-10">
+										<cf:common_code_select code_group_id="RECOM_GROUP" tag_id="sch_recom_type" tag_name="sch_recom_type" tag_value="${paramMap.sch_recom_type}" tag_header="---선택하세요.---" tag_class="form-control" tag_style="width: 100%;"/>
+									</div>
+								</div>
+              				</div>
+            			</div>
+            			<!-- /.col -->
+            			<div class="col-md-6">
+	              			<div class="form-group">
+								<div class="row">
+									<div class="col-md-2"><label>추천인명</label></div>
+									<div class="col-md-10"><input type="text" id="sch_member_name" name="sch_member_name" class="form-control" style="width: 100%;" value="${paramMap.sch_member_name}"/></div>
+								</div>
+	              			</div>
+            			</div>
+            			<!-- /.col -->
+					</div>					
 					<!-- /.row -->
           			<div class="row">
             			<div class="col-md-6">
@@ -142,12 +164,12 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
                 				<c:forEach items="${pageHelper.list}" var="list">
 	                				<tr>
 	                  					<td>${list.member_seq}</td>
-	                  					<td>계정구분</td>
+	                  					<td><cf:common_code_name code_group_id="RECOM_TYPE" code_id="${list.recom_type}" /></td>
 	                  					<td>${list.member_id}</td>
 	                  					<td>${list.member_name}</td>
-	                  					<td>0</td>
-	                  					<td>소속</td>
-	                  					<td>${list.is_valid}</td>
+	                  					<td>${list.recom_count}</td>
+	                  					<td><cf:common_code_name code_group_id="RECOM_GROUP" code_id="${list.recom_group}" /></td>
+	                  					<td><cf:common_code_name code_group_id="IS_VALID" code_id="${list.is_valid}" /></td>
 	                  					<td>${list.regdate}</td>
 	                  					<td>${list.uptdate}</td>
 	                				</tr>

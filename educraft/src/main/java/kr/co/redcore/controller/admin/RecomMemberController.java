@@ -29,10 +29,12 @@ public class RecomMemberController extends BaseController {
 		ParamMap paramMap = new ParamMap();
 		paramMap.put("sch_member_id", params.get("sch_member_id"));
 		paramMap.put("sch_member_name", params.get("sch_member_name"));
+		paramMap.put("sch_recom_type", params.get("sch_recom_type"));
+		paramMap.put("sch_recom_group", params.get("sch_recom_group"));
 		paramMap.put("sch_start_date", params.get("sch_start_date"));
 		paramMap.put("sch_end_date", params.get("sch_end_date"));
 		paramMap.put("sch_member_type", "R");//추천인
-		
+				
 		PageHelper pageHelper;
 		if(params.get("curr_page") != null && !params.get("curr_page").equals("")) {
 			pageHelper = new PageHelper(Long.parseLong((String) params.get("curr_page")), PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
