@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 import kr.co.redcore.GlobalConstants;
 import kr.co.redcore.domain.Tbl_member;
@@ -23,16 +25,20 @@ import kr.co.redcore.service.member.LoginService;
 import kr.co.redcore.service.member.MemberAccessLogService;
 
 @Aspect
+@Component
 public class ControllerAspect {
 	private static final Logger logger = LoggerFactory.getLogger(ControllerAspect.class);
 	
-//	@Autowired
-//	private LoginService loginService;		
+	@Autowired
+	private LoginService loginService;
+	
+	@Autowired
+	private MemberAccessLogService memberAccessLogService;
 	
 	@Pointcut("execution(* kr.co.redcore..*Controller.**(..))")
-	public void allControllerMethod() {
+	public void allControllerMethod() {		
 	}
-
+	
 	/**
 	 * Controller 요청 정보를 로그로 남긴다.
 	 * 
@@ -72,14 +78,7 @@ public class ControllerAspect {
 				logger.debug(key + " = " + httpReq.getParameter(key));
 			}
 			logger.debug("################################################################################");
-//			
-//			if(loginService != null) {			
-//				logger.debug(">>>>> " + loginService.isLogin(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY));
-//			} else {
-//				logger.debug(">ssfdsafdsfsdf>>>> " + loginService.isLogin(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY));
-//			}
 
-			/*
 			if(loginService.isLogin(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY)) {
 				Tbl_member tbl_member = loginService.getLoginInfo(httpReq, GlobalConstants.ADMIN_LOGININFO_KEY);
 				
@@ -87,16 +86,15 @@ public class ControllerAspect {
 				tbl_member_access_log.setMember_seq(tbl_member.getMember_seq());
 				tbl_member_access_log.setMember_id(tbl_member.getMember_id());
 				tbl_member_access_log.setIp_addr(httpReq.getRemoteAddr());
-				tbl_member_access_log.setAccess_url( httpReq.getRequestURI());				
+				tbl_member_access_log.setAccess_url( httpReq.getRequestURI());
+				tbl_member_access_log.setRegby(tbl_member.getMember_id());
 				memberAccessLogService.insertTbl_member_access_log(tbl_member_access_log);
 				
 				logger.debug("URL => " + httpReq.getRequestURI() + " : access log insert !!!");
-			}*/
+			}
 		} else {
 			logger.debug("HttpServletRequest is null");
 		}
-
-
 		
 		logger.debug("### Controller Before Advice End !! ###");
 		logger.debug("------------------- controller start -----------------------------------------------------");

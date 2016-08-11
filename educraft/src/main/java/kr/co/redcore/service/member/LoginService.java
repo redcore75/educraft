@@ -19,7 +19,6 @@ public class LoginService {
 	@Autowired
 	private MemberService memberService;
 
-	@Transactional(rollbackFor = {Exception.class})
 	public boolean loginProcess(HttpServletRequest request, HttpServletResponse response, String key, String member_id, String password) throws Exception {
 		Tbl_member tbl_member = memberService.getTbl_memberByMember_idEtc(member_id, password);
 		if (tbl_member != null) {

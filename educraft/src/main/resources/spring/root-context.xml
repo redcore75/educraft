@@ -6,12 +6,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-
-	<tx:annotation-driven/>
-	<util:properties id="configProp" location="classpath:properties/config.properties"/>
 	
-	<!-- AOP설정 -->
-	<bean id="ControllerAspect" class="kr.co.redcore.aop.ControllerAspect"/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<util:properties id="configProp" location="classpath:properties/config.properties"/>
 	
 	<!-- 메시지설정 -->
  	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -24,48 +21,4 @@
 		<property name="fileEncodings" value="UTF-8" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-	
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="20000000" />
-	</bean>
-	
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="java:/comp/env/jdbc/redcore" />
- 	</bean>
-	
-	<!-- 
-    <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
-		<property name="driver" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://122.129.251.106:3306/educraft" />
-		<property name="username" value="educraft" />
-		<property name="password" value="educraft" />
-		<property name="poolPingEnabled" value="true"/>
-        <property name="poolPingQuery" value="select 1"/>
-        <property name="poolPingConnectionsNotUsedFor" value="43200"/>
-        <property name="poolTimeToWait" value="30000"/>
-        <property name="poolMaximumActiveConnections" value="50"/>
-        <property name="poolMaximumIdleConnections" value="5"/>
-	</bean>
-	-->
-	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
-		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml" />
-		<property name="typeAliasesPackage" value="kr.co.redcore.domain, kr.co.redcore.domain.view"></property>
-	</bean>
-	
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> 
-		<constructor-arg index="0" ref="sqlSessionFactory"/> 
-	</bean>
-	
-	<!-- 
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="kr.**.**.mapper" />
-	</bean>
-	-->
 </beans>
