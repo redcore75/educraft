@@ -65,7 +65,7 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
 								<div class="row">
 									<div class="col-md-2"><label>계정구분</label></div>
 									<div class="col-md-10">
-										<cf:common_code_select code_group_id="RECOM_GROUP" tag_id="sch_recom_type" tag_name="sch_recom_type" tag_value="${paramMap.sch_recom_type}" tag_header="---선택하세요.---" tag_class="form-control" tag_style="width: 100%;"/>
+										<cf:common_code_select code_group_id="RECOM_TYPE" tag_id="sch_recom_type" tag_name="sch_recom_type" tag_value="${paramMap.sch_recom_type}" tag_header="---선택하세요.---" tag_class="form-control" tag_style="width: 100%;"/>
 									</div>
 								</div>
               				</div>
@@ -74,8 +74,10 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
             			<div class="col-md-6">
 	              			<div class="form-group">
 								<div class="row">
-									<div class="col-md-2"><label>추천인명</label></div>
-									<div class="col-md-10"><input type="text" id="sch_member_name" name="sch_member_name" class="form-control" style="width: 100%;" value="${paramMap.sch_member_name}"/></div>
+									<div class="col-md-2"><label>소속</label></div>
+									<div class="col-md-10">
+										<cf:common_code_select code_group_id="RECOM_GROUP" tag_id="sch_recom_group" tag_name="sch_recom_group" tag_value="${paramMap.sch_recom_type}" tag_header="---선택하세요.---" tag_class="form-control" tag_style="width: 100%;"/>
+									</div>
 								</div>
 	              			</div>
             			</div>

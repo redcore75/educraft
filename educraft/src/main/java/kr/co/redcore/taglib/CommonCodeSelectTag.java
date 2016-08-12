@@ -21,6 +21,7 @@ public class CommonCodeSelectTag extends RequestContextAwareTag {
 	private String tag_header;
 	private String tag_class;
 	private String tag_style;
+	private String tag_onclick;
 
 	@SuppressWarnings("unchecked")
 	public int doStartTagInternal() throws JspException {
@@ -32,7 +33,7 @@ public class CommonCodeSelectTag extends RequestContextAwareTag {
 			if (tbl_common_codeList.size() > 0) {
 				StringBuffer sb = new StringBuffer();
 
-				sb.append("<select id=\"" + tag_id + "\" name=\"" + tag_name + "\" {class} {style}>");				
+				sb.append("<select id=\"" + tag_id + "\" name=\"" + tag_name + "\" {class} {style} {onclick}>");
 				if ((tag_header != null) && !tag_header.equals("")) {
 					sb.append("<option>" + tag_header + "</option>");
 				}
@@ -47,9 +48,10 @@ public class CommonCodeSelectTag extends RequestContextAwareTag {
 				}
 				sb.append("</select>");
 
-				String outTags = sb.toString();				
-				outTags = UserString.replace(outTags, "{class}", "class=\"" + tag_class + "\"");				
-				outTags = UserString.replace(outTags, "{style}", "sytle=\"" + tag_style + "\"");
+				String outTags = sb.toString();
+				outTags = UserString.replace(outTags, "{class}", tag_class != null ? "class=\"" + tag_class + "\"" : "");				
+				outTags = UserString.replace(outTags, "{style}", tag_style != null ? "sytle=\"" + tag_style + "\"" : "");
+				outTags = UserString.replace(outTags, "{onclick}", tag_onclick != null ? "onclick=\"" + tag_onclick + "\"" : "");
 				
 				pageContext.getOut().print(outTags);
 			} else {
@@ -116,5 +118,13 @@ public class CommonCodeSelectTag extends RequestContextAwareTag {
 
 	public void setTag_style(String tag_style) {
 		this.tag_style = tag_style;
+	}
+
+	public String getTag_onclick() {
+		return tag_onclick;
+	}
+
+	public void setTag_onclick(String tag_onclick) {
+		this.tag_onclick = tag_onclick;
 	}
 }
