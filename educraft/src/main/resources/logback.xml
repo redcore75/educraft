@@ -4,7 +4,8 @@
 
 	<logger name="org.springframework" level="ERROR" />
 	<logger name="org.apache.ibatis" level="ERROR" />
-
+	<logger name="org.mybatis.spring.SqlSessionUtils" level="ERROR" />
+	
 	<!-- 
 	<logger name="java.sql" level="INFO" /> 
 	<logger name="jdbc.sqlonly" additivity="false" level="DEBUG" /> 

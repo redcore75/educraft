@@ -25,7 +25,7 @@ public class FrontMemberController extends BaseController {
 	private MemberService mmeberService;	
 	
 	@RequestMapping(value = "/admin/front_member/searchList.do")
-	public ModelAndView loginForm(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params) throws Exception {
+	public ModelAndView searchList(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params) throws Exception {
 		ParamMap paramMap = new ParamMap();
 		paramMap.put("sch_member_id", params.get("sch_member_id"));
 		paramMap.put("sch_member_name", params.get("sch_member_name"));

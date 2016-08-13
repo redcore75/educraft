@@ -175,12 +175,12 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
 			</div>
 			<div class="col-md-6">
 				<div align="right">
-					<button type="botton" class="btn btn-info">등록하기</button>
-					<button type="botton" class="btn btn-info">엑셀파일</button>
+					<a href="registForm.do"><button type="botton" class="btn btn-default btn-flat">등록하기</button></a>
+					<button type="botton" class="btn btn-default btn-flat">엑셀파일</button>
 				</div>
 			</div>
 		</div>	
 	</div>
 	<!-- /.content -->
-	
+
 </body>

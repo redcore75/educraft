@@ -81,7 +81,7 @@ public class LoginAdminFilter implements Filter {
 			//logger.debug("LoginAdminFilter >>> uriLastName : " + uriLastName.replaceFirst(request.getContextPath(), ""));
 			
 			if (fileExtMap.containsKey(uriExtName) && !notCheckMap.containsKey(uriLastName.replaceFirst(request.getContextPath(), ""))) {
-				logger.debug("LoginAdminFilter >>> check isLogin");
+				//logger.debug("LoginAdminFilter >>> check isLogin");
 				
 				LoginService loginService = new LoginService();
 				if (!loginService.isLogin(request, GlobalConstants.ADMIN_LOGININFO_KEY)) {

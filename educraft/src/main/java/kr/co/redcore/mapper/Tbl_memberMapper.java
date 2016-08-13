@@ -9,4 +9,5 @@ public interface Tbl_memberMapper {
 	public Tbl_member getTbl_memberByMember_idEtc(String member_id, String password) throws SQLException;
 	public long getPageHelperCntByParamMap(ParamMap paramMap) throws SQLException;
 	public List getPageHelperListByParamMapEtc(long start, long size, ParamMap paramMap) throws SQLException;
+	public int insertTbl_member(Tbl_member tbl_member) throws SQLException;
 }

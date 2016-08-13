@@ -28,4 +28,8 @@ public class MemberService extends PageObject {
 
 		return pageHelper;
 	}
+	
+	public int insertTbl_member(Tbl_member tbl_member) throws Exception {
+		return tbl_memberMapper.insertTbl_member(tbl_member);
+	}
 }

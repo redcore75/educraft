@@ -2,6 +2,7 @@ package kr.co.redcore;
 
 public class GlobalConstants {
 	public static String ADMIN_LOGININFO_KEY = "ADMIN_LOGININFO_KEY";
+	public static String TOKEN_ERROR_KEY = "TOKEN_ERROR";
 	
 	public static final String MEMBER_TYPE_ADMIN = "A";
 	public static final String MEMBER_TYPE_FRONT = "F";

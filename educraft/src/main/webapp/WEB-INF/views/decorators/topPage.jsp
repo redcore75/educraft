@@ -11,7 +11,7 @@ Tbl_member tbl_member = (Tbl_member) session.getAttribute(GlobalConstants.ADMIN_
 			</div>
 			<div class="col-md-1">
 				<a href="${pageContext.request.contextPath}/admin/login/logout.do">
-					<button type="submit" class="btn btn-default">로그아웃</button>
+					<button type="submit" class="btn btn-default btn-flat">로그아웃</button>
 				</a>
 			</div>
 		</div>

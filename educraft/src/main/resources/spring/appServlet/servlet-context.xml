@@ -18,11 +18,15 @@
 	<!-- Root Context: defines shared resources visible to all other web components --> 
 	<context:component-scan base-package="kr.co.redcore" />
 	
+	<interceptors>
+	  <beans:bean class="kr.co.redcore.interceptor.TokenInterceptor"/>
+	</interceptors>
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/upload/**" location="/upload/" />
-	<resources mapping="/download/**" location="/download/" />
-	
+	<resources mapping="/download/**" location="/download/" />		
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -31,5 +35,9 @@
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="20000000" />
+	</beans:bean>
+	
+	<beans:bean id="annotationHandlerAdaptor" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	    <beans:property name="synchronizeOnSession" value="true" />
 	</beans:bean>
 </beans:beans>

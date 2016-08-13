@@ -6,6 +6,11 @@
 	<short-name>cf</short-name>
 	<uri>/WEB-INF/tld/redcore-tags.tld</uri>
 	<tag>
+  		<name>token</name>
+  			<tag-class>kr.co.redcore.taglib.TokenInputTag</tag-class>
+  		<body-content>JSP</body-content>
+ 	</tag>
+	<tag>
 		<name>common_code_name</name>
 		<tag-class>kr.co.redcore.taglib.CommonCodeNameTag</tag-class>
 		<body-content>JSP</body-content>

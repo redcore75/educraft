@@ -38,4 +38,7 @@ public class Tbl_memberMapperImpl implements Tbl_memberMapper {
 		return sqlSession.selectList("Tbl_member.getPageHelperListByParamMapEtc", paramMap);
 	}
 	
+	public int insertTbl_member(Tbl_member tbl_member) throws SQLException {
+		return sqlSession.insert("Tbl_member.insertTbl_member", tbl_member);
+	}
 }
