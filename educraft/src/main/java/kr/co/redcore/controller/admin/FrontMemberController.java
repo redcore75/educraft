@@ -18,7 +18,7 @@ import kr.co.redcore.util.PageHelper;
 import kr.co.redcore.util.ParamMap;
 
 @Controller
-public class FrontMemberController extends BaseController {
+public class FrontMemberController {
 	private static final Logger logger = LoggerFactory.getLogger(FrontMemberController.class);
 	
 	@Autowired
@@ -37,7 +37,7 @@ public class FrontMemberController extends BaseController {
 		if(params.get("curr_page") != null && !params.get("curr_page").equals("")) {
 			pageHelper = new PageHelper(Long.parseLong((String) params.get("curr_page")), PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
 		} else {
-			pageHelper = new PageHelper(curr_page, PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
+			pageHelper = new PageHelper(PageHelper.DEFAULT_CURR_PAGE, PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
 		}
 		mmeberService.getPageHelperByParamEtc(paramMap, pageHelper);
 		

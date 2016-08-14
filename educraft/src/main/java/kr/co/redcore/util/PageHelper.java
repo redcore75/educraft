@@ -3,6 +3,7 @@ package kr.co.redcore.util;
 import java.util.List;
 
 public class PageHelper {
+	public static final long DEFAULT_CURR_PAGE = 1;
 	public static final long DEFAULT_GROUP_SIZE = 10;
 	public static final long DEFAULT_PAGE_SIZE = 10;
 

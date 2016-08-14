@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import kr.co.redcore.GlobalConstants;
 import kr.co.redcore.annotation.CheckToken;
 import kr.co.redcore.domain.Tbl_member;
@@ -32,7 +31,7 @@ import kr.co.redcore.util.ParamMap;
 
 @Controller
 @SessionAttributes(value = { "tbl_member" })
-public class AdminMemberController extends BaseController {
+public class AdminMemberController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminMemberController.class);
 
 	@Autowired
@@ -54,7 +53,7 @@ public class AdminMemberController extends BaseController {
 		if (params.get("curr_page") != null && !params.get("curr_page").equals("")) {
 			pageHelper = new PageHelper(Long.parseLong((String) params.get("curr_page")), PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
 		} else {
-			pageHelper = new PageHelper(curr_page, PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
+			pageHelper = new PageHelper(PageHelper.DEFAULT_CURR_PAGE, PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
 		}
 		mmeberService.getPageHelperByParamEtc(paramMap, pageHelper);
 
@@ -113,9 +112,9 @@ public class AdminMemberController extends BaseController {
 			
 			status.setComplete();
 		} catch (DuplicateKeyException ex) {
-			bindingResult.rejectValue("member_dup", "error_member_id_dup");
+			bindingResult.rejectValue("member_id", "error_member_id_dup");
 		} catch (Member_id_dupException ex) {
-			bindingResult.rejectValue("member_dup", "error_member_id_dup");
+			bindingResult.rejectValue("member_id", "error_member_id_dup");
 		}
 
 		ModelAndView mv = new ModelAndView();

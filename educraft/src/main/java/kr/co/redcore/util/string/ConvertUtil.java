@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
  * <p>
  * String값을 적절하게 변환하는 메소드를 포함하는 클래스
@@ -14,6 +17,18 @@ import java.util.ArrayList;
  * @version Revision: Date: Jan 6, 2002 2:22:38 PM
  */
 public class ConvertUtil {
+    private static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+
+    /**
+     * Vo Object 직렬화
+     * 
+     * @param obj
+     * @return
+     */
+    public static String generateJson( Object obj ){
+        return GSON.toJson(obj);
+    }
+    
 	/**
 	 * 문자열 채움 함수 <br>
 	 * 주어진 문자열을 왼쪽 방향에 공백문자를 길이 만큼 채워서 리턴한다.

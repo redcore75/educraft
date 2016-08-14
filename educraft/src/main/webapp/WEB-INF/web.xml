@@ -79,6 +79,7 @@
 	<filter-mapping>
 		<filter-name>LoginAdminFilter</filter-name>
 		<url-pattern>/admin/*</url-pattern>
+		<url-pattern>/api/*</url-pattern>
 	</filter-mapping>
 	
 	<!-- Processes application requests -->

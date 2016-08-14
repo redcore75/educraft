@@ -7,7 +7,31 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
 <head>	 				
 	<script type="text/javascript">
 		$(document).ready(function(){
- 
+			$("#checkMemberDup").click(function(){
+				var member_id = $("#member_id").val();
+				if(member_id == "") {
+					alert("아이디를 입력하세요.");
+				} else {
+					$.ajax({
+						url:"${pageContext.request.contextPath}/api/checkMemberDup.do?member_id=" + member_id,
+						type:"GET",
+						data: {},
+						dataType:"json",
+						cache:false,
+						success:function(data){
+							if(data.code == 0000) {
+								$("#member_id").val("");
+								alert("사용중인 아이디입니다.");
+							} else {
+								alert("사용가능한 아이디입니다.");
+							}
+						},
+						error : function(request, status, error) {
+							alert("code : " + request.status + "\r\nmessage : " + request.responseText + "\r\nerror : " + error);
+						}
+					});
+				}
+			});
 		});
 	</script>
 </head>
@@ -35,8 +59,7 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
 												<form:input path="member_id" type="text" class="form-control" maxlength="30" style="width: 100%;"/>
 											</div>
 											<div class="col-md-6">
-												<form:errors path="member_dup" cssClass="text-red" element="div"/>
-												<button type="button" class="btn btn-info btn-flat">중복체크</button>
+												<button id="checkMemberDup" type="button" class="btn btn-info btn-flat">중복체크</button>
 											</div>
 										</div>
 									</div>

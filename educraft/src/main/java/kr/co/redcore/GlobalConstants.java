@@ -4,6 +4,10 @@ public class GlobalConstants {
 	public static String ADMIN_LOGININFO_KEY = "ADMIN_LOGININFO_KEY";
 	public static String TOKEN_ERROR_KEY = "TOKEN_ERROR";
 	
+    public static final String API_RESULT_SUCCESS = "0000";// 성공.
+    public static final String API_RESULT_FAIL = "9999";// 실패.	
+    public static final String API_FORMAT_JSON = "json";// 실패.
+    
 	public static final String MEMBER_TYPE_ADMIN = "A";
 	public static final String MEMBER_TYPE_FRONT = "F";
 	public static final String MEMBER_TYPE_RECOM = "R";

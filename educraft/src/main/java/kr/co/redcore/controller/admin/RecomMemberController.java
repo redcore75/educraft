@@ -18,7 +18,7 @@ import kr.co.redcore.util.PageHelper;
 import kr.co.redcore.util.ParamMap;
 
 @Controller
-public class RecomMemberController extends BaseController {
+public class RecomMemberController {
 	private static final Logger logger = LoggerFactory.getLogger(RecomMemberController.class);
 	
 	@Autowired
@@ -34,12 +34,12 @@ public class RecomMemberController extends BaseController {
 		paramMap.put("sch_start_date", params.get("sch_start_date"));
 		paramMap.put("sch_end_date", params.get("sch_end_date"));
 		paramMap.put("sch_member_type", "R");//추천인
-				
+		
 		PageHelper pageHelper;
 		if(params.get("curr_page") != null && !params.get("curr_page").equals("")) {
 			pageHelper = new PageHelper(Long.parseLong((String) params.get("curr_page")), PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
 		} else {
-			pageHelper = new PageHelper(curr_page, PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
+			pageHelper = new PageHelper(PageHelper.DEFAULT_CURR_PAGE, PageHelper.DEFAULT_GROUP_SIZE, PageHelper.DEFAULT_PAGE_SIZE);
 		}
 		mmeberService.getPageHelperByParamEtc(paramMap, pageHelper);
 		

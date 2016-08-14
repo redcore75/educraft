@@ -19,6 +19,10 @@ public class MemberService extends PageObject {
 	@Autowired
 	private Tbl_memberMapper tbl_memberMapper;
 	
+	public long getTbl_memberCntByMember_id(String member_id) throws Exception {
+		return tbl_memberMapper.getTbl_memberCntByMember_id(member_id);
+	}
+	
 	public Tbl_member getTbl_memberByMember_idEtc(String member_id, String password) throws Exception {
 		return tbl_memberMapper.getTbl_memberByMember_idEtc(member_id, password);		
 	}
@@ -31,8 +35,8 @@ public class MemberService extends PageObject {
 	}
 	
 	public int insertTbl_member(Tbl_member tbl_member) throws Exception {
-		int tmCnt = tbl_memberMapper.getTbl_memberCntByMember_id(tbl_member.getMember_id());
-		if(tmCnt > 0) {
+		long memberCount = tbl_memberMapper.getTbl_memberCntByMember_id(tbl_member.getMember_id());
+		if(memberCount > 0) {
 			throw new Member_id_dupException(tbl_member.getMember_id());
 		} else {
 			return tbl_memberMapper.insertTbl_member(tbl_member);

@@ -16,12 +16,12 @@ import kr.co.redcore.domain.Tbl_member;
 import kr.co.redcore.service.member.LoginService;
 
 @Controller
-public class AdminLoginController extends BaseController {
+public class AdminLoginController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminLoginController.class);
 	
 	@Autowired
 	private LoginService loginService;	
-		
+	
 	@RequestMapping(value = "/admin/login/loginForm.do")
 	public ModelAndView loginForm(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -30,7 +30,7 @@ public class AdminLoginController extends BaseController {
 	}
 
 	@RequestMapping(value = "/admin/login/login.do")
-	public ModelAndView login(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params) throws Exception {		
+	public ModelAndView login(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params) throws Exception {
 		String member_id = (String) params.get("member_id");
 		String password = (String) params.get("password");
 		
