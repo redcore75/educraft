@@ -18,6 +18,12 @@ public class Tbl_memberMapperImpl implements Tbl_memberMapper {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
+	public int getTbl_memberCntByMember_id(String member_id) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Tbl_member.getTbl_memberCntByMember_id", member_id);
+	}
+	
+	@Override
 	public Tbl_member getTbl_memberByMember_idEtc(String member_id, String password) throws SQLException {
 		// TODO Auto-generated method stub
 		HashMap param = new HashMap();

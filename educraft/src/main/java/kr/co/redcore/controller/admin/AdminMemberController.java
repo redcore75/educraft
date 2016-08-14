@@ -1,5 +1,6 @@
 package kr.co.redcore.controller.admin;
 
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.redcore.GlobalConstants;
 import kr.co.redcore.annotation.CheckToken;
 import kr.co.redcore.domain.Tbl_member;
+import kr.co.redcore.exception.Member_id_dupException;
+import kr.co.redcore.service.member.LoginService;
 import kr.co.redcore.service.member.MemberService;
 import kr.co.redcore.util.PageHelper;
 import kr.co.redcore.util.ParamMap;
@@ -31,6 +35,9 @@ import kr.co.redcore.util.ParamMap;
 public class AdminMemberController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminMemberController.class);
 
+	@Autowired
+	private LoginService loginService;	
+	
 	@Autowired
 	private MemberService mmeberService;
 
@@ -76,40 +83,45 @@ public class AdminMemberController extends BaseController {
 	public ModelAndView regist(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params, @ModelAttribute @Valid Tbl_member tbl_member, BindingResult bindingResult, SessionStatus status) throws Exception {
 		// ParamMap paramMap = new ParamMap();
 
-		// if (bindingResult.hasErrors()) {
-		// List<ObjectError> list = bindingResult.getAllErrors();
-		// for (ObjectError oe : list) {
-		// logger.error("ObjectError: " + oe);
-		// }
-		//
-		// ModelAndView mv = new ModelAndView();
-		// mv.setViewName("admin/admin_member/registForm");
-		// // mv.addObject("tbl_member", new Tbl_member());
-		//
-		// return mv;
-		// }
-
-		String tokenError = (String)req.getAttribute(GlobalConstants.TOKEN_ERROR_KEY);
-		if(tokenError != null) {
-			logger.debug(">>>>>>> " + tokenError);
-		}
-
-			try {
-				logger.debug("tbl_member.getMember_id() >>> " + tbl_member.getMember_seq());
-				logger.debug("tbl_member.getMember_id() >>> " + tbl_member.getMember_id());
-				logger.debug("tbl_member.getMember_name() >>> " + tbl_member.getMember_name());
-	
-				status.setComplete();
-			} catch (DuplicateKeyException ex) {
-				bindingResult.rejectValue("member_id", "DuplicateKey", "중복된 관리자ID가 이미 존재합니다.");
+		String tokenError = (String) req.getAttribute(GlobalConstants.TOKEN_ERROR_KEY);
+		if (bindingResult.hasErrors() || (tokenError != null)) {
+			List<ObjectError> list = bindingResult.getAllErrors();
+			for (ObjectError oe : list) {
+				logger.error("ObjectError: " + oe);
 			}
 
-		 
+			if (tokenError != null) {
+				logger.debug(">>>>>>> " + tokenError);
+			}			
 			
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("admin/admin_member/registDone");
-			// mv.addObject("paramMap", paramMap);
-	
-			return mv;		 
+			mv.setViewName("admin/admin_member/registForm");
+
+			return mv;
+		}
+
+		try {
+			logger.debug("tbl_member.toString() >>> " + tbl_member.toString());
+
+			tbl_member.setCurr_point(0);
+			tbl_member.setIs_del("N");
+			tbl_member.setIs_valid("Y");
+			tbl_member.setRegby(loginService.getLoginInfo(req, GlobalConstants.ADMIN_LOGININFO_KEY).getMember_id());
+			tbl_member.setUptby(loginService.getLoginInfo(req, GlobalConstants.ADMIN_LOGININFO_KEY).getMember_id());
+			
+			mmeberService.insertTbl_member(tbl_member);
+			
+			status.setComplete();
+		} catch (DuplicateKeyException ex) {
+			bindingResult.rejectValue("member_dup", "error_member_id_dup");
+		} catch (Member_id_dupException ex) {
+			bindingResult.rejectValue("member_dup", "error_member_id_dup");
+		}
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/admin_member/registDone");
+		// mv.addObject("paramMap", paramMap);
+
+		return mv;
 	}
 }

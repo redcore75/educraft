@@ -12,23 +12,23 @@ response.setDateHeader("Expires", 0);
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css"/>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/AdminLTE.min.css"/>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/_all-skins.min.css"/>				
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/datepicker3.css"/>	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/AdminLTE.min.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/_all-skins.min.css"/>
+	<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.min.css"/>  -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/datepicker3.css"/>	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
     <script src="${pageContext.request.contextPath}/resources/plugins/datepicker/locales/bootstrap-datepicker.kr.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
     
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -49,7 +49,7 @@ response.setDateHeader("Expires", 0);
 	
 	<decorator:head />
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body>
 	<!-- START:TOP Area -->
 	<page:applyDecorator name="admin_top" />
 	<!-- END:TOP Area -->

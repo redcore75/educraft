@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Tbl_member">
+	<select id="getTbl_memberCntByMember_id" parameterType="HashMap" resultType="Long">
+		<![CDATA[
+		SELECT count(*)
+		  FROM tbl_member
+		 WHERE member_id = #{member_id}
+		]]>
+	</select>
+
 	<select id="getTbl_memberByMember_idEtc" parameterType="HashMap" resultType="Tbl_member">
 		<![CDATA[
 		SELECT member_seq,

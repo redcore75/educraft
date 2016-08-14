@@ -1,6 +1,7 @@
 package kr.co.redcore.service.member;
 
 import kr.co.redcore.domain.Tbl_member;
+import kr.co.redcore.exception.Member_id_dupException;
 import kr.co.redcore.mapper.Tbl_memberMapper;
 import kr.co.redcore.service.PageObject;
 import kr.co.redcore.util.PageHelper;
@@ -30,6 +31,11 @@ public class MemberService extends PageObject {
 	}
 	
 	public int insertTbl_member(Tbl_member tbl_member) throws Exception {
-		return tbl_memberMapper.insertTbl_member(tbl_member);
+		int tmCnt = tbl_memberMapper.getTbl_memberCntByMember_id(tbl_member.getMember_id());
+		if(tmCnt > 0) {
+			throw new Member_id_dupException(tbl_member.getMember_id());
+		} else {
+			return tbl_memberMapper.insertTbl_member(tbl_member);
+		}
 	}
 }

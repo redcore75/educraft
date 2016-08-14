@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Tbl_member extends BaseObject {
 	private int member_seq;
 
-	@Min(value = 1, message = "관리자권한등급을 선택하세요.")
+	@Min(value = 1, message = "권한등급을 선택하세요.")
 	private int member_level_seq;
 
 	@NotBlank(message = "관리자ID를 입력하세요.")
@@ -17,12 +17,17 @@ public class Tbl_member extends BaseObject {
 
 	@NotBlank(message = "비밀번호를 입력하세요.")
 	private String password;
-	private String member_type;
-	private String email_addr;
-	private String mobile_num;
-	private long curr_point;// 현재포인트
 
-	@NotBlank(message = "사용여부를 선택하세요.")
+	private String member_type;
+	
+	@NotBlank(message = "이메일을 입력하세요.")
+	private String email_addr;
+	
+	@NotBlank(message = "전화번호를 입력하세요.")
+	private String mobile_num;
+	
+	private long curr_point;// 현재포인트
+	
 	private String is_valid;
 	private String is_del;
 	private String memo;
