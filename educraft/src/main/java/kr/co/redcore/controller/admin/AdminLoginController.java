@@ -23,9 +23,10 @@ public class AdminLoginController {
 	private LoginService loginService;	
 	
 	@RequestMapping(value = "/admin/login/loginForm.do")
-	public ModelAndView loginForm(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params) throws Exception {
+	public ModelAndView loginForm(HttpSession session, HttpServletRequest req, HttpServletResponse res, @RequestParam Map<String, Object> params) throws Exception {		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/login/loginForm");
+		
 		return mv;
 	}
 
@@ -36,12 +37,12 @@ public class AdminLoginController {
 		
 		ModelAndView mv = new ModelAndView();
 		if(loginService.loginProcess(req, res, GlobalConstants.ADMIN_LOGININFO_KEY, member_id, password)) {
-			mv.setViewName("admin/login/loginDone");			
-			return mv;
+			mv.setViewName("admin/login/loginDone");
 		} else {
 			mv.setViewName("admin/login/loginForm");
-			return mv;
 		}
+		
+		return mv;
 	}
 	
 	@RequestMapping(value = "/admin/login/logout.do")
@@ -53,6 +54,7 @@ public class AdminLoginController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/login/logoutDone");
+		
 		return mv;
 	}
 }

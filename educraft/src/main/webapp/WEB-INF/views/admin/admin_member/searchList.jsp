@@ -142,7 +142,7 @@ ParamMap paramMap = (ParamMap) request.getAttribute("paramMap");
 	                				<tr>
 	                  					<td>${list.member_seq}</td>
 	                  					<td>${list.level_name}</td>
-	                  					<td>${list.member_id}</td>
+	                  					<td><a href="updateForm.do?curr_page=">${list.member_id}</a></td>
 	                  					<td>${list.member_name}</td>
 	                  					<td>${list.email_addr}</td>
 	                  					<td><cf:common_code_name code_group_id="IS_VALID" code_id="${list.is_valid}" /></td>

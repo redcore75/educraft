@@ -61,7 +61,7 @@ public class AdminMemberController {
 		mv.setViewName("admin/admin_member/searchList");
 		mv.addObject("paramMap", paramMap);
 		mv.addObject("pageHelper", pageHelper);
-
+		
 		return mv;
 	}
 
@@ -73,7 +73,7 @@ public class AdminMemberController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/admin_member/registForm");
 		mv.addObject("tbl_member", tbl_member);
-
+		
 		return mv;
 	}
 
@@ -95,7 +95,7 @@ public class AdminMemberController {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("admin/admin_member/registForm");
-
+			
 			return mv;
 		}
 
@@ -120,7 +120,7 @@ public class AdminMemberController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/admin_member/registDone");
 		// mv.addObject("paramMap", paramMap);
-
+		
 		return mv;
 	}
 }
